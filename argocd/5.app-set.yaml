@@ -14,6 +14,12 @@ spec:
             revision: HEAD
             namespace: dev
             repo: argo-applicationset
+          - app: uat-app
+            cluster: docker-desktop
+            path: prod
+            revision: main
+            namespace: monitoring
+            repo: argo-applicationset
   template:
     metadata:
       name: '{{app}}'
