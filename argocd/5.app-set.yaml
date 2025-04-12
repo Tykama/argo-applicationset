@@ -1,6 +1,6 @@
 #application.yaml
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: appset
   namespace: argocd
@@ -27,12 +27,12 @@ spec:
             namespace: stage
             repo: argo-applicationset
           - app: uat-app
-            cluster: eks-cluster
+            cluster: docker-desktop
             path: prod
             revision: main
             namespace: monitoring
             repo: argo-applicationset
-  templet:
+  template:
     metadata:
       name: '{{app}}'
     spec:
