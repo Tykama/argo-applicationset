@@ -15,7 +15,7 @@ spec:
             namespace: dev
             repo: argo-applicationset
           - app: uat-app
-            cluster: docker-desktop
+            cluster: in-cluster
             path: prod
             revision: main
             namespace: monitoring
