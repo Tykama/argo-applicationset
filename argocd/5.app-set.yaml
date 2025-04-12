@@ -21,10 +21,16 @@ spec:
             namespace: monitoring
             repo: argo-applicationset
           - app:  stage-app
-            cluster: digital-ocean
+            cluster: in-cluster
             path: prod 
             revision: main
             namespace: stage
+            repo: argo-applicationset
+          - app:  prod-app
+            cluster: in-cluster
+            path: prod
+            revision: main
+            namespace: prod
             repo: argo-applicationset
   template:
     metadata:
