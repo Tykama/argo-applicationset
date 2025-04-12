@@ -20,6 +20,12 @@ spec:
             revision: main
             namespace: monitoring
             repo: argo-applicationset
+          - app:  stage-app
+            cluster: digital-ocean
+            path: prod 
+            revision: main
+            namespace: stage
+            repo: argo-applicationset
   template:
     metadata:
       name: '{{app}}'
