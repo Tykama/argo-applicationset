@@ -14,24 +14,6 @@ spec:
             revision: HEAD
             namespace: dev
             repo: argo-applicationset
-          - app:  prod-app
-            cluster: eks-cluster
-            path: prod
-            revision: main
-            namespace: prod
-            repo: argo-applicationset
-          - app:  stage-app
-            cluster: digital-ocean
-            path: prod 
-            revision: main
-            namespace: stage
-            repo: argo-applicationset
-          - app: uat-app
-            cluster: docker-desktop
-            path: prod
-            revision: main
-            namespace: monitoring
-            repo: argo-applicationset
   template:
     metadata:
       name: '{{app}}'
