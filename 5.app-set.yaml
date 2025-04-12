@@ -1,0 +1,52 @@
+#application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: appset
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - app:  dev-app
+            cluster: in-cluster
+            path: prod
+            revision: HEAD
+            namespace: dev
+            repo: argo-applicationset
+          - app:  prod-app
+            cluster: eks-cluster
+            path: prod
+            revision: main
+            namespace: prod
+            repo: argo-applicationset
+          - app:  stage-app
+            cluster: digital-ocean
+            path: prod 
+            revision: main
+            namespace: stage
+            repo: argo-applicationset
+          - app: uat-app
+            cluster: eks-cluster
+            path: prod
+            revision: main
+            namespace: monitoring
+            repo: argo-applicationset
+  templet:
+    metadata:
+      name: '{{app}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Tykama/{{repo}}.git
+        targetRevision: '{{revision}}'
+        path: '{{path}}'
+      destination:
+        name: '{{cluster}}'
+        namespace: '{{namespace}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          selfHeal: true
+          prune: true
